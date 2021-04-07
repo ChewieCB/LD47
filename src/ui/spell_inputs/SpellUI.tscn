@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons29.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons24.png" type="Texture" id=2]
+[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons15.png" type="Texture" id=3]
+[ext_resource path="res://src/spells/chains/ChainIcon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons27.png" type="Texture" id=6]
+[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons10.png" type="Texture" id=7]
+
+[node name="SpellUI" type="VBoxContainer"]
+margin_right = 824.0
+margin_bottom = 660.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_right = 824.0
+margin_bottom = 217.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_top = 221.0
+margin_right = 824.0
+margin_bottom = 438.0
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+margin_right = 824.0
+margin_bottom = 217.0
+columns = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_top = 442.0
+margin_right = 824.0
+margin_bottom = 660.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 824.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 161.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChainIcon" parent="VBoxContainer/HBoxContainer/CenterContainer" instance=ExtResource( 4 )]
+spell_icon = ExtResource( 6 )
+spell_name = "Blind"
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 165.0
+margin_right = 327.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChainIcon" parent="VBoxContainer/HBoxContainer/CenterContainer2" instance=ExtResource( 4 )]
+spell_icon = ExtResource( 2 )
+spell_name = "Freeze"
+
+[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 331.0
+margin_right = 492.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChainIcon" parent="VBoxContainer/HBoxContainer/CenterContainer3" instance=ExtResource( 4 )]
+spell_icon = ExtResource( 1 )
+spell_name = "Foresight"
+
+[node name="CenterContainer4" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 496.0
+margin_right = 658.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChainIcon" parent="VBoxContainer/HBoxContainer/CenterContainer4" instance=ExtResource( 4 )]
+spell_icon = ExtResource( 7 )
+spell_name = "Duality"
+
+[node name="CenterContainer5" type="CenterContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 662.0
+margin_right = 824.0
+margin_bottom = 107.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChainIcon" parent="VBoxContainer/HBoxContainer/CenterContainer5" instance=ExtResource( 4 )]
+spell_icon = ExtResource( 3 )
+spell_name = "Banishment"
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 111.0
+margin_right = 824.0
+margin_bottom = 218.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Tween" type="Tween" parent="."]

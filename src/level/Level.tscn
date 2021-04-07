@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/level/base_level.gd" type="Script" id=1]
+[ext_resource path="res://assets/backgrounds/fleshspawn_test.png" type="Texture" id=2]
+[ext_resource path="res://src/spells/chains/ChainManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/OLD/berserker/Berserker.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/characters/demon/Demon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/ui/spell_inputs/SpellUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/ui/main_ui/Main.tscn" type="PackedScene" id=12]
+
+[node name="Level" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 100.0
+margin_top = 50.0
+margin_right = -100.0
+margin_bottom = 110.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UIOverlays" type="CanvasLayer" parent="."]
+
+[node name="Tween" type="Tween" parent="UIOverlays"]
+
+[node name="MainUI" type="CanvasLayer" parent="."]
+
+[node name="MainUI" parent="MainUI" instance=ExtResource( 12 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 826.424, -349.695 )
+scale = Vector2( 2, 3 )
+texture = ExtResource( 2 )
+
+[node name="Demon" parent="." instance=ExtResource( 5 )]
+position = Vector2( 412, 80 )
+
+[node name="SpellUI" parent="." instance=ExtResource( 6 )]
+
+[node name="ChainManager" parent="." instance=ExtResource( 3 )]
+position = Vector2( 400, 120 )
+
+[node name="Berserker" parent="ChainManager" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( -188.775, 113.265 )
+
+[node name="Berserker2" parent="ChainManager" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 195.225, 113.265 )
+
+[node name="Sprite" parent="ChainManager/Berserker2" index="0"]
+flip_h = true
+
+[node name="SummonTimer" type="Timer" parent="."]
+
+[node name="BreakTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+[connection signal="evolved" from="Demon" to="." method="_on_Demon_evolved"]
+[connection signal="timeout" from="BreakTimer" to="." method="_on_BreakTimer_timeout"]
+
+[editable path="ChainManager/Berserker2"]

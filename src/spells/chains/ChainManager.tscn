@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/spells/chains/chain_manager.gd" type="Script" id=1]
+[ext_resource path="res://assets/audio/fail.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/success.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/chain_complete.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/boom.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/lose.wav" type="AudioStream" id=6]
+
+[node name="ChainManager" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Chains" type="Node2D" parent="."]
+
+[node name="SuccessSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="FailSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+
+[node name="ChainCompleteSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="LoseSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="BoomSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )

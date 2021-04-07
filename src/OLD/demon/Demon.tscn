@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/characters/demon/FlameDemon.png" type="Texture" id=1]
+[ext_resource path="res://assets/characters/demon/pentagram.png" type="Texture" id=2]
+[ext_resource path="res://src/OLD/chains/chain/ChainOutline.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 3 )
+shader_param/GlowColor = Color( 0.937255, 0.682353, 0.0784314, 1 )
+shader_param/OutlineWidth = 2.0
+
+[node name="Demon" type="Node2D"]
+
+[node name="Sprite2" type="Sprite" parent="."]
+material = SubResource( 1 )
+position = Vector2( -0.561218, 104.561 )
+scale = Vector2( 2, 1 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )

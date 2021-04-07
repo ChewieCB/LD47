@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/ui/main_ui/main_ui.gd" type="Script" id=1]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/ui/fonts/KimsBitHand.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.937255, 0.117647, 0.113725, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.392157, 0.203922, 0.203922, 1 )
+
+[node name="MainUI" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+margin_left = 250.0
+margin_top = 20.0
+margin_right = -250.0
+margin_bottom = 70.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 524.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Timer"]
+margin_right = 524.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/Timer/CenterContainer"]
+margin_left = 235.0
+margin_top = 8.0
+margin_right = 289.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 2 )
+text = "0:00"
+align = 1
+valign = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/Timer"]
+margin_top = 52.0
+margin_right = 524.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Timer/CenterContainer2"]
+margin_left = 212.0
+margin_top = 14.0
+margin_right = 312.0
+margin_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 100, 20 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+step = 1.0
+percent_visible = false
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = 200.0
+margin_right = -100.0
+margin_bottom = -200.0
+rect_min_size = Vector2( 100, 200 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="TextureProgress" parent="MarginContainer2"]
+margin_right = 100.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 40, 200 )
+step = 1.0
+value = 25.0
+rounded = true
+fill_mode = 3

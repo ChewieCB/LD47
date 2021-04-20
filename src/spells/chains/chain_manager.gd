@@ -23,7 +23,11 @@ var current_chain
 var number_of_chains = 0
 export (int) var starting_chains = 3
 #
-onready var stave_ui = get_parent()
+onready var level = get_parent()
+#
+var main_ui
+var spell_ui
+var spell_icon
 #
 var next_input
 var next_input_index = 0
@@ -35,7 +39,16 @@ var is_failed = false
 var is_input_available = true
 
 
+
 func _ready():
+	yield(get_parent(), "ready")
+	
+	# UI
+	main_ui = level.main_ui
+	spell_ui = main_ui.spell_ui
+	# TODO - variablise the spell's position on the toolbar
+	spell_icon = spell_ui.get_node("SpellBarMarginContainer/SpellBar").get_child(0)
+	
 	# Add initial chains
 	for chain in starting_chains:
 		# Load a new chain instance
@@ -72,12 +85,18 @@ func _input(event):
 			if next_input_index >= current_chain.input_sequence_strings.size():
 				add_chain()
 				next_input_index = 0
+				# Re-enable the spell icon
+				spell_icon.is_available = true
 			else:
 				next_input = current_chain.input_sequence_strings[next_input_index]
+		
+		# Triggered on toolbar input (TODO - make variable based on spell slot value)
 		if Input.is_key_pressed(KEY_1) and not current_chain:
 			# Load a new chain instance
 			var chain = chain_scene.instance()
 			load_chain_inputs(chain)
+			# Set the icon to unavailable
+			spell_icon.is_available = false
 
 
 func add_chain():
@@ -95,16 +114,16 @@ func add_initial_chain(chain):
 
 func load_blank_cells():
 	# Generate the grid cells
-	var arrow_grid_container = stave_ui.get_node("SpellUI/MarginContainer/GridContainer")
+	var input_grid_container = level.main_ui.spell_ui.input_grid
 	# Clear any previous cells
-	for child in arrow_grid_container.get_children():
+	for child in input_grid_container.get_children():
 		child.queue_free()
 	#
-	arrow_grid_container.columns = current_chain.number_of_inputs
-	for y in range(3):
-		for x in range(arrow_grid_container.columns):
+	input_grid_container.columns = current_chain.number_of_inputs
+	for _x in range(3):
+		for _y in range(input_grid_container.columns):
 			var grid_cell_instance = grid_cell_scene.instance()
-			arrow_grid_container.add_child(grid_cell_instance)
+			input_grid_container.add_child(grid_cell_instance)
 	#
 	current_chain = null
 
@@ -113,12 +132,12 @@ func load_chain_inputs(chain):
 	# Load up the controls for the chain at the top of the stack
 	var controls = chain.input_sequence
 	# Generate the grid cells
-	var arrow_grid_container = stave_ui.get_node("SpellUI/MarginContainer/GridContainer")
+	var input_grid_container = level.main_ui.spell_ui.input_grid
 	# Clear any previous cells
-	for child in arrow_grid_container.get_children():
+	for child in input_grid_container.get_children():
 		child.queue_free()
 	#
-	arrow_grid_container.columns = chain.number_of_inputs
+	input_grid_container.columns = chain.number_of_inputs
 	# We want 3 rows so go back to the top every 3 arrows
 	var active_rows = [
 		Vector2(0, 0),
@@ -139,17 +158,17 @@ func load_chain_inputs(chain):
 		ordered_input_cells.append("")
 	#
 	for y in range(3):
-		for x in range(arrow_grid_container.columns):
+		for x in range(input_grid_container.columns):
 			var grid_cell_instance = grid_cell_scene.instance()
 			if Vector2(x, y) in active_rows:
 				var active_index = active_rows.find(Vector2(x, y))
 				var current_control_input = controls[active_index]
 				var arrow = arrow_scene.instance()
 				arrow.input = POSSIBLE_INPUTS[current_control_input]
-				grid_cell_instance.get_node("Position2D").add_child(arrow)
+				grid_cell_instance.add_child(arrow)
 				ordered_input_cells.remove(active_index)
 				ordered_input_cells.insert(active_index, arrow)
-			arrow_grid_container.add_child(grid_cell_instance)
+			input_grid_container.add_child(grid_cell_instance)
 	
 	current_chain = chain
 	next_input = chain.input_sequence_strings[0]

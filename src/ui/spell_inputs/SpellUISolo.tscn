@@ -1,12 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons29.png" type="Texture" id=1]
-[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons24.png" type="Texture" id=2]
-[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons15.png" type="Texture" id=3]
 [ext_resource path="res://src/spells/chains/ChainIcon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/ui/spell_inputs/spell_ui.gd" type="Script" id=5]
 [ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons27.png" type="Texture" id=6]
-[ext_resource path="res://assets/ui/skill_icons/48x48/skill_icons10.png" type="Texture" id=7]
 
 [node name="SpellUI" type="VBoxContainer"]
 anchor_right = 1.0
@@ -53,38 +49,10 @@ margin_right = 924.0
 alignment = 1
 
 [node name="Spell" parent="SpellBarMarginContainer/SpellBar" instance=ExtResource( 4 )]
-margin_right = 181.0
+margin_right = 924.0
 margin_bottom = 0.0
 spell_icon = ExtResource( 6 )
 spell_name = "Bind"
 is_available = true
-
-[node name="Spell2" parent="SpellBarMarginContainer/SpellBar" instance=ExtResource( 4 )]
-margin_left = 185.0
-margin_right = 367.0
-margin_bottom = 0.0
-spell_icon = ExtResource( 2 )
-spell_name = "Freeze"
-
-[node name="Spell3" parent="SpellBarMarginContainer/SpellBar" instance=ExtResource( 4 )]
-margin_left = 371.0
-margin_right = 552.0
-margin_bottom = 0.0
-spell_icon = ExtResource( 1 )
-spell_name = "Foresight"
-
-[node name="Spell4" parent="SpellBarMarginContainer/SpellBar" instance=ExtResource( 4 )]
-margin_left = 556.0
-margin_right = 738.0
-margin_bottom = 0.0
-spell_icon = ExtResource( 7 )
-spell_name = "Duality"
-
-[node name="Spell5" parent="SpellBarMarginContainer/SpellBar" instance=ExtResource( 4 )]
-margin_left = 742.0
-margin_right = 924.0
-margin_bottom = 0.0
-spell_icon = ExtResource( 3 )
-spell_name = "Banish"
 
 [node name="Tween" type="Tween" parent="."]

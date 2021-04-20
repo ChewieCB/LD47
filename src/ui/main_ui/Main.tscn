@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/ui/main_ui/main_ui.gd" type="Script" id=1]
+[ext_resource path="res://src/ui/spell_inputs/SpellUISolo.tscn" type="PackedScene" id=2]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/ui/fonts/KimsBitHand.ttf"
@@ -23,7 +24,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="TimerUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
 margin_left = 250.0
 margin_top = 20.0
@@ -33,20 +34,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Timer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Timer" type="VBoxContainer" parent="TimerUI"]
 margin_right = 524.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Timer"]
+[node name="CenterContainer" type="CenterContainer" parent="TimerUI/Timer"]
 margin_right = 524.0
 margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/Timer/CenterContainer"]
+[node name="Label" type="Label" parent="TimerUI/Timer/CenterContainer"]
 margin_left = 235.0
 margin_top = 8.0
 margin_right = 289.0
@@ -58,14 +59,15 @@ text = "0:00"
 align = 1
 valign = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/Timer"]
+[node name="CenterContainer2" type="CenterContainer" parent="TimerUI/Timer"]
 margin_top = 52.0
 margin_right = 524.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/Timer/CenterContainer2"]
+[node name="ProgressBar" type="ProgressBar" parent="TimerUI/Timer/CenterContainer2"]
+visible = false
 margin_left = 212.0
 margin_top = 14.0
 margin_right = 312.0
@@ -78,24 +80,21 @@ custom_styles/bg = SubResource( 4 )
 step = 1.0
 percent_visible = false
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
-anchor_left = 1.0
+[node name="SpellUI" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -100.0
-margin_top = 200.0
-margin_right = -100.0
-margin_bottom = -200.0
-rect_min_size = Vector2( 100, 200 )
+margin_left = 50.0
+margin_top = 80.0
+margin_right = -50.0
+margin_bottom = -120.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="TextureProgress" parent="MarginContainer2"]
-margin_right = 100.0
-margin_bottom = 200.0
-rect_min_size = Vector2( 40, 200 )
-step = 1.0
-value = 25.0
-rounded = true
-fill_mode = 3
+[node name="SpellUI" parent="SpellUI" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 924.0
+margin_bottom = 400.0

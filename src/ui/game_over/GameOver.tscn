@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/ui/game_over/game_over.gd" type="Script" id=1]
 
@@ -16,9 +16,17 @@ font_path = "res://assets/ui/fonts/KimsBitHand.ttf"
 size = 32
 font_data = SubResource( 3 )
 
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://assets/ui/fonts/KimsBitHand.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = SubResource( 5 )
+
 [node name="GameOver" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -29,6 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 0.840942
 margin_right = 0.840942
+mouse_filter = 2
 color = Color( 0, 0, 0, 0.831373 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -41,6 +50,7 @@ margin_left = 100.0
 margin_top = 100.0
 margin_right = -100.0
 margin_bottom = -100.0
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -96,32 +106,64 @@ size_flags_vertical = 3
 [node name="Continue" type="CenterContainer" parent="MarginContainer/VBoxContainer/ChoiceButtons"]
 margin_right = 410.0
 margin_bottom = 131.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ChoiceButtons/Continue"]
+modulate = Color( 0.741176, 0.294118, 0.32549, 1 )
+margin_left = 139.0
+margin_top = 49.0
+margin_right = 271.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 6 )
+text = "Continue"
+align = 1
+valign = 1
+
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ChoiceButtons/Continue"]
-margin_left = 170.0
-margin_top = 55.0
-margin_right = 239.0
-margin_bottom = 75.0
+margin_left = 104.0
+margin_top = 15.0
+margin_right = 304.0
+margin_bottom = 115.0
+rect_min_size = Vector2( 200, 100 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Continue"
+shortcut_in_tooltip = false
+action_mode = 0
+flat = true
 expand_icon = true
 
 [node name="Quit" type="CenterContainer" parent="MarginContainer/VBoxContainer/ChoiceButtons"]
 margin_left = 414.0
 margin_right = 824.0
 margin_bottom = 131.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ChoiceButtons/Quit"]
-margin_left = 185.0
-margin_top = 55.0
-margin_right = 225.0
-margin_bottom = 75.0
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ChoiceButtons/Quit"]
+modulate = Color( 0.741176, 0.294118, 0.32549, 1 )
+margin_left = 176.0
+margin_top = 49.0
+margin_right = 234.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 6 )
 text = "Quit"
+align = 1
+valign = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/ChoiceButtons/Quit"]
+margin_left = 104.0
+margin_top = 15.0
+margin_right = 304.0
+margin_bottom = 115.0
+rect_min_size = Vector2( 200, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+shortcut_in_tooltip = false
+action_mode = 0
+flat = true
 expand_icon = true
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ChoiceButtons/Continue/Button" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ChoiceButtons/Quit/Button" to="." method="_on_Quit_pressed"]

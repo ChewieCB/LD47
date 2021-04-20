@@ -100,6 +100,9 @@ func _input(event):
 
 
 func add_chain():
+	# Play the popup
+	spell_ui.popup_spawn.add_popup(1)
+	# Add the chain
 	$Chains.add_child(current_chain)
 	$ChainCompleteSound.play()
 	current_chain.get_node("AnimationPlayer").play("bind")

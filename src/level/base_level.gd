@@ -83,6 +83,7 @@ func _on_BreakTimer_timeout():
 		$SummonTimer.start(summon_time_left + $BreakTimer.wait_time)
 	else:
 		# Evolve the demon and lose the game
+		chain_manager.is_input_available = false
 		demon.animation_player.play("evolve")
 		$ChainManager/LoseSound.play()
 		$ChainManager/BoomSound.play()

@@ -10,4 +10,4 @@ func add_popup(seconds):
 	popup_instance.label.text = "+%s" % [str(seconds)]
 	popup_instance.global_position = self.global_position
 	popup_instance.animation_player.play("fade_up")
-	
+
